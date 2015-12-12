@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Calculator";
+}
+
+<h2>Calculator</h2>
+
+@using(@Html.BeginForm())
+{
+<text>
+    X: @Html.TextBox("X")<br /><br />    
+    Операция: @Html.DropDownList("Oper", new List<SelectListItem>() {
+             new SelectListItem() { Text = "+", Value = "+" },
+             new SelectListItem() { Text = "-", Value = "-" },
+             new SelectListItem() { Text = "*", Value = "*" },
+             new SelectListItem() { Text = "/", Value = "/" }
+        })<br /><br />
+Y: @Html.TextBox("Y")<br /><br />
+    <input type="submit" value="Отправить" /><br />
+</text>
+}
+@if (ViewBag.IsError)
+{
+    <b style="color:orange">Ошибка!</b>
+}

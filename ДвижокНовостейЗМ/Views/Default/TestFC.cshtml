@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "TestFC";
+}
+
+<h2>TestFC</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBox("Name")<br />
+    <input type="submit" value="Go!" />
+}
+@if(ViewBag.Name != null)
+{
+    <p>@ViewBag.Name</p>
+}

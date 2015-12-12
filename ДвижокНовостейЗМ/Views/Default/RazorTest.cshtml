@@ -1,0 +1,38 @@
+﻿@using ДвижокНовостейЗМ.Models;
+@{
+    //sdflsfdljsflk
+    /* sdjfjlsjf
+    sdlfj
+    */
+    ViewBag.Title = "RazorTest";
+  //  Layout = "~/Views/_LayoutPage1.cshtml";
+    List<Human> humans = new List<Human>();
+    for (int i = 0; i < 10; ++i)
+    {
+        humans.Add(new Human("Имя" + i, 30 + i, "Город" + i));
+    }
+}
+
+<h2>RazorTest</h2>
+@Helper11.HelperHumans(humans)
+<br />
+@* Ghjnfdslfjslfs sfsdf ss
+    sfljsldfjsf
+*@
+@{
+    int x = 10;
+    int y = 10;
+    @:Текст
+    <br />
+    <text>
+        sdfsfs
+        sdfddfs
+    </text>
+    <br />
+}
+Наша x = @x
+<br />
+Наша y = @y
+<br />
+Когда x*y = @(x * y)
+<br />

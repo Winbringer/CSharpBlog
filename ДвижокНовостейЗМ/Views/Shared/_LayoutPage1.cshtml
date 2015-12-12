@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        @Html.ActionLink("Домашняя", "Index", "Default")
+        @Html.ActionLink("Об авторе", "AboutTheAuthor", "Default")
+        @Html.ActionLink("RazorTest", "RazorTest", "Default")
+        @Html.ActionLink("Проверка запроса Get", "GetTest", "Default", new { x = 1, y = 3 },new { @class="he", id="ha" })
+        @Html.ActionLink("Калькулятор", "Calculator", "Default")
+        @Html.ActionLink("Пробуем FormCollection ", "TestFC", "Default")
+        @Html.ActionLink("Админка для Сообщений", "Index", "Messages")
+    </header>
+    <div style="float:right; border: 2px solid red; background-color:blue">
+        @RenderSection("rPanel", false)
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <footer>
+        <p>&copy; Уроки MVC. 2015  - @DateTime.Now.Year</p>
+    </footer>
+</body>
+</html>

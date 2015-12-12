@@ -1,0 +1,35 @@
+﻿@using ДвижокНовостейЗМ.Models
+@helper HelperHumans(List<Human> humans)
+{
+    <table border="1">
+        <caption>Таблица людей</caption>
+        <tr>
+            <th>Имя</th>
+            <th>Возраст</th>
+            <th>Место рождения</th>
+        </tr>
+        @foreach (Human h in humans)
+        {
+            if (h.Age > 35)
+            {
+                <tr style="color:aqua">
+                    <td>@h.Name</td>
+                    <td>@h.Age</td>
+                    <td>@h.Birthplace</td>
+                </tr>
+            }
+            else
+            {
+                <tr style="color:purple">
+                    <td>@h.Name</td>
+                    <td>@h.Age</td>
+                    <td>@h.Birthplace</td>
+                </tr>
+            }
+        }
+    </table>
+}
+@helper Human(Human h)
+{
+    <div>Имя: @h.Name / Возраст: @h.Age / Место рождения: @h.Birthplace</div>
+}
