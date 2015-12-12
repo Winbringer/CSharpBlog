@@ -9,13 +9,7 @@ namespace ДвижокНовостейЗМ.Controllers
     {
         ApplicationDBContext db = new ApplicationDBContext();
 
-        // GET: Reply
-        public ActionResult Index()
-        {
-            return PartialView(db.Replys.ToList());
-        }
        
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

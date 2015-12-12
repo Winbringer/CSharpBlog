@@ -37,14 +37,22 @@ namespace ДвижокНовостейЗМ.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Details([Bind(Include = "Text,MessageId")]Reply r, int? MessageId)
+        public ActionResult Details([Bind(Include = "Text,MessageId")]Reply reply, int? MessageId)
         {
-            r.Date = DateTime.Now;
-            Message m = db.Messages.Find(MessageId);
-            r.Message = m;
-           db.Replys.Add(r);
+            reply.Date = DateTime.Now;
+            if (MessageId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Message message = db.Messages.Find(MessageId);
+            if (message == null)
+            {
+                return HttpNotFound();
+            }
+            reply.Message = message;
+           db.Replys.Add(reply);
             db.SaveChanges();            
-            return View(r.Message);
+            return View(reply.Message);
         }
         // GET: Messages/Create
         public ActionResult Create()
