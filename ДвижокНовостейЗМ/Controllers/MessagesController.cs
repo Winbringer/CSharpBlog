@@ -35,6 +35,17 @@ namespace ДвижокНовостейЗМ.Controllers
             return View(message);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details([Bind(Include = "Text,MessageId")]Reply r, int? MessageId)
+        {
+            r.Date = DateTime.Now;
+            Message m = db.Messages.Find(MessageId);
+            r.Message = m;
+           db.Replys.Add(r);
+            db.SaveChanges();            
+            return View(r.Message);
+        }
         // GET: Messages/Create
         public ActionResult Create()
         {

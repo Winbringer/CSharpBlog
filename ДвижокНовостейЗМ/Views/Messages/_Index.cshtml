@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ДвижокНовостейЗМ.Models.Reply>
+
+<p>   
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Текст ответа
+        </th>
+        <th>Дата</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |           
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

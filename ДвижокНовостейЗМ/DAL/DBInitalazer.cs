@@ -1,4 +1,5 @@
 ﻿
+using System;
 using ДвижокНовостейЗМ.Models;
 
 namespace ДвижокНовостейЗМ.DAL
@@ -28,6 +29,13 @@ namespace ДвижокНовостейЗМ.DAL
                 }                
                 context.Messages.Add(message);
                 context.Tags.Add(tag);
+                Reply reply = new Reply
+                {
+                    Text = "Все хуйня Миша, давай по новой " + i,
+                    Date = DateTime.Now,
+                    Message= message
+                };
+                context.Replys.Add(reply);
             }
             context.Tags.Add(tag1);
             base.Seed(context);
