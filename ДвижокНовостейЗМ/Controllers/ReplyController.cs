@@ -58,9 +58,10 @@ namespace ДвижокНовостейЗМ.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
            Reply reply = db.Replys.Find(id);
+          int  savedId = reply.Message.Id;
             db.Replys.Remove(reply);
             db.SaveChanges();
-            return RedirectToAction("Details", "Messages", new { id = oldReply.Message.Id });
+            return RedirectToAction("Details", "Messages", new { id = savedId });
         }
         protected override void Dispose(bool disposing)
         {
