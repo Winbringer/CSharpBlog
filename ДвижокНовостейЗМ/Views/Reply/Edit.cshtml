@@ -1,0 +1,17 @@
+﻿@model ДвижокНовостейЗМ.Models.Reply
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm())
+{
+    <br />
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.LabelFor(m => m.Text)<br />
+    @Html.TextArea("Text")<br />
+    <input type="submit" value="Сохранить" /> 
+}
+<div>@Html.ActionLink("Назад", "Details", "Messages", new { id = Model.Message.Id }, null)</div>

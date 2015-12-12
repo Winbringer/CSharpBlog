@@ -1,0 +1,36 @@
+﻿@model ДвижокНовостейЗМ.Models.Reply
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Вы точно хотите удалить?</h3>
+<div>
+    <h4>Reply</h4>
+    <hr />
+    <dl class="dl-horizontal">   
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()               
+        <input type="submit" value="Delete" />      
+    }
+    @Html.ActionLink("Назад", "Details", "Messages", new { id = Model.Message.Id }, null)
+</div>
