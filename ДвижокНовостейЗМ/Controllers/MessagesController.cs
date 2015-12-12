@@ -16,9 +16,9 @@ namespace ДвижокНовостейЗМ.Controllers
 
         // GET: Messages
         public ActionResult Index()
-        {
-            return View(db.Messages.ToList());
-        }
+        { 
+            return View(db.Messages.Include("Replys").OrderBy(m=>m.Title).ToList());
+        } 
 
         // GET: Messages/Details/5
         public ActionResult Details(int? id)

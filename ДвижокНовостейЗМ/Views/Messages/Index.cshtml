@@ -20,6 +20,12 @@
         <th>
             Tegs
         </th>
+        <th>
+            Ответов
+        </th>
+        <th>
+            Последние 30 символов
+        </th>
         <th></th>
     </tr>
 
@@ -41,6 +47,16 @@
             </td>
             <td>
                 @tags
+            </td>
+            <td>
+                @item.Replys.Count
+            </td>
+            <td>
+                @{
+                    string text = item.Replys.Aggregate((x, y) => { if (x.Date < y.Date) return y; else return x; }).Text;
+                    text = text.Length > 30 ? text.Substring(text.Length-30,30) : text;
+                  }
+                @text               
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
