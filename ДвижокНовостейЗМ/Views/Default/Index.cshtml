@@ -1,8 +1,9 @@
 ﻿@using ДвижокНовостейЗМ.Models
 @{
     ViewBag.Title = "Домашняя";
-   // Layout = "~/Views/_LayoutPage1.cshtml";
+    M calc = new M();
 }
+  
 
 <h2>Домашняя</h2>
 <p> Сегодняшняя дата @DateTime.Now.Day<i>.</i>@DateTime.Now.Month<i>.</i>@DateTime.Now.Year</p>
@@ -12,3 +13,6 @@
 <h3>Тестируем частичные представления</h3>
 @Html.Action("_PartialMy","Default",new Human("Виктор",22,"Челябинск"))<br />
 @Html.Partial("_PartialMy", new Human("Виктор", 42, "Челябинск"))
+
+<h3>Тестим Лямбду</h3>
+Результат: @calc.Oper(2,3,(x,y)=>x + y)

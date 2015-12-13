@@ -113,6 +113,7 @@
     <Compile Include="Models\ApplicationDBContext .cs" />
     <Compile Include="Models\Calc.cs" />
     <Compile Include="Models\Human.cs" />
+    <Compile Include="Models\M.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Reply.cs" />
     <Compile Include="Models\Tag.cs" />

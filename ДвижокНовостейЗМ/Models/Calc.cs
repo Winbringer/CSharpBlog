@@ -28,5 +28,6 @@ namespace ДвижокНовостейЗМ.Models
                 default: return 0;
             }
         }
-    }
+    }    
 }
+
