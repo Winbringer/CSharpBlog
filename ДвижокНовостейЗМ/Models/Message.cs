@@ -11,9 +11,12 @@ namespace ДвижокНовостейЗМ.Models
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name ="Заголовок")]
         public string Title { get; set; }
+        [Display(Name ="Текст новости")]
+        [DataType(DataType.MultilineText)]
         public string Text { get; set; }
-        public virtual ICollection<Reply> Replys { get; set; }
+        public virtual ICollection<Reply> Replys { get; set; }        
         public virtual ICollection<Tag> Tags { get; set; }
         public Message()
         {
