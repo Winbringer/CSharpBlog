@@ -1,11 +1,13 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" charset="utf-8" />
     <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>       
 </head>
-<body>
+<body>    
     <header>
         @Html.ActionLink("Домашняя", "Index", "Default")
         @Html.ActionLink("Об авторе", "AboutTheAuthor", "Default")
@@ -23,6 +25,6 @@
     </div>
     <footer>
         <p>&copy; Уроки MVC. 2015  - @DateTime.Now.Year</p>
-    </footer>
+    </footer>  
 </body>
 </html>
