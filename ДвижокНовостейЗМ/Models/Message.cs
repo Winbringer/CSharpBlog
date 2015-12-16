@@ -11,12 +11,19 @@ namespace ДвижокНовостейЗМ.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Display(Name ="Заголовок")]
+        [Required(ErrorMessage ="Заголовок не задан")]
+        [StringLength(5000,MinimumLength =3)]
         public string Title { get; set; }
+
         [Display(Name ="Текст новости")]
         [DataType(DataType.MultilineText)]
+        [Required(ErrorMessage = "Текст новости не задан")]
         public string Text { get; set; }
+
         [Display(Name ="Дата публикации")]
+        [Required(ErrorMessage = "Не указана дата публикации")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(ConvertEmptyStringToNull =true,DataFormatString ="{0:d}",NullDisplayText ="Дата не указана",ApplyFormatInEditMode =true)]
         public DateTime PubDate { get; set; }
