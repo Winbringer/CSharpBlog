@@ -16,7 +16,8 @@ namespace ДвижокНовостейЗМ.DAL
                 Message message = new Message
                 {
                     Title = "Сообщение номер " + i,
-                    Text = "Ехохо и бутылка рома номер " + i
+                    Text = "Ехохо и бутылка рома номер " + i,
+                    PubDate=DateTime.Now
                 };
                 Tag tag = new Tag
                 {

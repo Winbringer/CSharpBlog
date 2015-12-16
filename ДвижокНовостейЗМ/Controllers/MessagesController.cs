@@ -65,7 +65,7 @@ namespace ДвижокНовостейЗМ.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Text")] Message message)
+        public ActionResult Create([Bind(Include = "Id,Title,Text,PubDate")] Message message)
         {
             if (ModelState.IsValid)
             {
@@ -97,11 +97,14 @@ namespace ДвижокНовостейЗМ.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Text")] Message message)
+        public ActionResult Edit([Bind(Include = "Id,Title,Text,PubDate")] Message message)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(message).State = EntityState.Modified;
+                Message message2 = db.Messages.Find(message.Id);
+                message2.Text = message.Text;
+                message2.Title = message.Title;
+                message2.PubDate = message.PubDate;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -26,6 +26,9 @@
         <th>
             Последние 30 символов
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PubDate)
+        </th>
         <th></th>
     </tr>
 
@@ -35,7 +38,7 @@
         string tags = String.Empty;
         foreach (var i in item.Tags)
         {
-            tags +="\""+ i.Name + "\" ";
+            tags += "\"" + i.Name + "\" ";
         }
 
         <tr>
@@ -53,10 +56,14 @@
             </td>
             <td>
                 @{
-                    string text = item.Replys.Aggregate((x, y) => { if (x.Date < y.Date) return y; else return x; }).Text;
-                    text = text.Length > 30 ? text.Substring(text.Length-30,30) : text;
-                  }
-                @text               
+                    string text = String.Empty;
+                    if (item.Replys.Count > 0) { text = item?.Replys?.Aggregate((x, y) => { if (x.Date < y.Date) return y; else return x; })?.Text; }
+                    if (text != null) { text = text.Length > 30 ? text.Substring(text.Length - 30, 30) : text; }
+                }
+                @text
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PubDate)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -64,6 +71,6 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
-    }
+                    }
 
 </table>

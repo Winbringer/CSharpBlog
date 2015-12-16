@@ -16,6 +16,10 @@ namespace ДвижокНовостейЗМ.Models
         [Display(Name ="Текст новости")]
         [DataType(DataType.MultilineText)]
         public string Text { get; set; }
+        [Display(Name ="Дата публикации")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ConvertEmptyStringToNull =true,DataFormatString ="{0:d}",NullDisplayText ="Дата не указана",ApplyFormatInEditMode =true)]
+        public DateTime PubDate { get; set; }
         public virtual ICollection<Reply> Replys { get; set; }        
         public virtual ICollection<Tag> Tags { get; set; }
         public Message()
