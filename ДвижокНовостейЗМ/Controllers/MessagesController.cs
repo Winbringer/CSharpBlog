@@ -143,6 +143,14 @@ namespace ДвижокНовостейЗМ.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public JsonResult CheckTitle(string title)
+        {
+            var messages = db.Messages.Where(x => x.Title == title).FirstOrDefault();
+            var result = (messages ==null);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

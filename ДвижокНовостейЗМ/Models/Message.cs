@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ДвижокНовостейЗМ.Models
 {
@@ -15,6 +16,7 @@ namespace ДвижокНовостейЗМ.Models
         [Display(Name ="Заголовок")]
         [Required(ErrorMessage ="Заголовок не задан")]
         [StringLength(5000,MinimumLength =3)]
+        [Remote("CheckTitle", "Messages",ErrorMessage = "Новость с таким заголовком уже есть в БД")]
         public string Title { get; set; }
 
         [Display(Name ="Текст новости")]
