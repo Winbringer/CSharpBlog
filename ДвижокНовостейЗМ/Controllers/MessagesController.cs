@@ -67,6 +67,12 @@ namespace ДвижокНовостейЗМ.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Text,PubDate")] Message message)
         {
+            char upper = message.Title[1];
+            if (char.IsUpper(upper))
+            {
+                ModelState.AddModelError("Title", "Вторая буква заглавная!");
+                return View(message);
+            }
             if (ModelState.IsValid)
             {
                 db.Messages.Add(message);
