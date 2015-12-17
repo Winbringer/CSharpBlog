@@ -16,9 +16,9 @@ namespace ДвижокНовостейЗМ.Controllers
 
         // GET: Messages
         public ActionResult Index()
-        { 
-            return View(db.Messages.Include("Replys").OrderBy(m=>m.Title).ToList());
-        } 
+        {
+            return View(db.Messages.Include("Replys").OrderBy(m => m.Title).ToList());
+        }
 
         // GET: Messages/Details/5
         public ActionResult Details(int? id)
@@ -37,26 +37,31 @@ namespace ДвижокНовостейЗМ.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Details([Bind(Include = "Text,MessageId")]Reply reply, int? MessageId)
+        public ActionResult Details([Bind(Include = "Text")]Reply reply, int? id)
         {
+            var url = Request.UrlReferrer.AbsolutePath;
             reply.Date = DateTime.Now;
-            if (MessageId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Message message = db.Messages.Find(MessageId);
+            Message message = db.Messages.Find(id);
             if (message == null)
             {
                 return HttpNotFound();
             }
-            reply.Message = message;
-           db.Replys.Add(reply);
-            db.SaveChanges();            
+            if (ModelState.IsValid)
+            {
+                reply.Message = message;
+                db.Replys.Add(reply);
+                db.SaveChanges();
+            }
             return View(reply.Message);
         }
         // GET: Messages/Create
         public ActionResult Create()
         {
+            Session["Create"] = "Yes";
             return View();
         }
 
@@ -67,12 +72,8 @@ namespace ДвижокНовостейЗМ.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Text,PubDate")] Message message)
         {
-            char upper = message.Title[1];
-            if (char.IsUpper(upper))
-            {
-                ModelState.AddModelError("Title", "Вторая буква заглавная!");
-                return View(message);
-            }
+            Session["Create"] = "Yes";
+
             if (ModelState.IsValid)
             {
                 db.Messages.Add(message);
@@ -95,6 +96,7 @@ namespace ДвижокНовостейЗМ.Controllers
             {
                 return HttpNotFound();
             }
+            Session["Create"] = "No";
             return View(message);
         }
 
@@ -105,6 +107,7 @@ namespace ДвижокНовостейЗМ.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Text,PubDate")] Message message)
         {
+            Session["Create"] = "No";
             if (ModelState.IsValid)
             {
                 Message message2 = db.Messages.Find(message.Id);
@@ -147,7 +150,8 @@ namespace ДвижокНовостейЗМ.Controllers
         public JsonResult CheckTitle(string title)
         {
             var messages = db.Messages.Where(x => x.Title == title).FirstOrDefault();
-            var result = (messages ==null);
+            var result = (messages == null);
+            if (Session["Create"].ToString() == "No") result = true;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

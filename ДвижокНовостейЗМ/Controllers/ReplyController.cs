@@ -63,6 +63,16 @@ namespace ДвижокНовостейЗМ.Controllers
             db.SaveChanges();
             return RedirectToAction("Details", "Messages", new { id = savedId });
         }
+        public ActionResult Create(Reply reply, int? id)
+        {
+           
+            if (ModelState.IsValid)
+            {
+                db.Replys.Add(reply);
+                db.SaveChanges();
+            }         
+            return RedirectToAction("Details", "Messages", new { id = id });
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

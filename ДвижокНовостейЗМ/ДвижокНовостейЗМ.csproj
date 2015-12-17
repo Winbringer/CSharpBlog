@@ -125,6 +125,7 @@
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Reply.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\ValidationAtributs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CalcData.cs" />
   </ItemGroup>
@@ -152,6 +153,7 @@
     <Content Include="Views\Reply\Edit.cshtml" />
     <Content Include="Views\Reply\Delete.cshtml" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Views\Messages\_ReplyCreate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

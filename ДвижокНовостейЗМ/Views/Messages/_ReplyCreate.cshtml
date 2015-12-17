@@ -1,0 +1,10 @@
+﻿@model ДвижокНовостейЗМ.Models.Reply
+
+@using (Html.BeginForm("Details","Messages",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+  @Html.LabelFor(m=>m.Text)  <br />
+     @Html.EditorFor(m=>m.Text);<br />
+        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })    
+    <input type="submit" value="Отправить" />
+}

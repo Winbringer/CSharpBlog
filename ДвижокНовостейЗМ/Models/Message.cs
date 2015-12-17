@@ -12,11 +12,11 @@ namespace ДвижокНовостейЗМ.Models
     {
         [Key]
         public int Id { get; set; }
-
+        [TitleValidation(ErrorMessage = "Вторая буква заглавная!")]
         [Display(Name ="Заголовок")]
         [Required(ErrorMessage ="Заголовок не задан")]
         [StringLength(5000,MinimumLength =3)]
-        [Remote("CheckTitle", "Messages",ErrorMessage = "Новость с таким заголовком уже есть в БД")]
+        [Remote("CheckTitle", "Messages",ErrorMessage = "Новость с таким заголовком уже есть в БД")]        
         public string Title { get; set; }
 
         [Display(Name ="Текст новости")]
@@ -26,8 +26,8 @@ namespace ДвижокНовостейЗМ.Models
 
         [Display(Name ="Дата публикации")]
         [Required(ErrorMessage = "Не указана дата публикации")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(ConvertEmptyStringToNull =true,DataFormatString ="{0:d}",NullDisplayText ="Дата не указана",ApplyFormatInEditMode =true)]
+        [DisplayFormat(ConvertEmptyStringToNull = true, DataFormatString = "{0:dd.MM.yyyy}", NullDisplayText = "Дата не указана", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime, ErrorMessage ="Здесь должна быть дата в формате dd.MM.yyyy")]        
         public DateTime PubDate { get; set; }
         public virtual ICollection<Reply> Replys { get; set; }        
         public virtual ICollection<Tag> Tags { get; set; }

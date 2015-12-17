@@ -1,5 +1,5 @@
 ﻿@model ДвижокНовостейЗМ.Models.Message
-
+@using ДвижокНовостейЗМ.Models
 @{
     ViewBag.Title = "Details";
 }
@@ -39,12 +39,5 @@
    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <br />
-    @Html.TextArea("Text"," ");<br />   
-    @Html.Hidden("MessageId", Model.Id);
-    <input type="submit" value="Отправить" />
-}
- @Html.Partial("_Index", Model.Replys.ToList())
+@Html.Partial("_ReplyCreate", new Reply())
+@Html.Partial("_Index", Model.Replys.ToList())
