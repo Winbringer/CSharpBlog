@@ -1,6 +1,9 @@
 ﻿
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using ДвижокНовостейЗМ.Models;
+using ДвижокНовостейЗМ.Models.Identity;
 
 namespace ДвижокНовостейЗМ.DAL
 {
@@ -39,6 +42,30 @@ namespace ДвижокНовостейЗМ.DAL
                 context.Replys.Add(reply);
             }
             context.Tags.Add(tag1);
+            var userManager = new ApplicationManager(new UserStore<ApplicationUser>(context));
+
+            var roleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(context));
+
+            // создаем две роли
+            var role1 = new ApplicationRole { Name = "admin" };
+            var role2 = new ApplicationRole { Name = "user" };
+
+            // добавляем роли в бд
+            roleManager.Create(role1);
+            roleManager.Create(role2);
+
+            // создаем пользователей
+            var admin = new ApplicationUser { Email = "somemail@mail.ru", UserName = "Admin" };
+            string password = "123456";
+            var result = userManager.Create(admin, password);
+
+            // если создание пользователя прошло успешно
+            if (result.Succeeded)
+            {
+                // добавляем для пользователя роль
+                userManager.AddToRole(admin.Id, role1.Name);
+                userManager.AddToRole(admin.Id, role2.Name);
+            }
             base.Seed(context);
         }
     }

@@ -1,18 +1,27 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta name="viewport" content="width=device-width" charset="utf-8" />
     <title>@ViewBag.Title</title>
     <script src="~/Scripts/jquery-2.1.4.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>       
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </head>
-<body>    
+<body>
     <header>
+        <p>           
+            @Html.ActionLink("Пользователи", "Index", "Account")
+
+            @Html.ActionLink("Роли", "Index", "Roles")
+
+            @Html.ActionLink("Выйти", "Logout", "Account")
+
+            @Html.ActionLink("Удалить свой аккаунт", "Delete", "Account")
+        </p>
         @Html.ActionLink("Домашняя", "Index", "Default")
         @Html.ActionLink("Об авторе", "AboutTheAuthor", "Default")
         @Html.ActionLink("RazorTest", "RazorTest", "Default")
-        @Html.ActionLink("Проверка запроса Get", "GetTest", "Default", new { x = 1, y = 3 },new { @class="he", id="ha" })
+        @Html.ActionLink("Проверка запроса Get", "GetTest", "Default", new { x = 1, y = 3 }, new { @class = "he", id = "ha" })
         @Html.ActionLink("Калькулятор", "Calculator", "Default")
         @Html.ActionLink("Пробуем FormCollection ", "TestFC", "Default")
         @Html.ActionLink("Админка для Сообщений", "Index", "Messages")
@@ -25,6 +34,6 @@
     </div>
     <footer>
         <p>&copy; Уроки MVC. 2015  - @DateTime.Now.Year</p>
-    </footer>  
+    </footer>
 </body>
 </html>
