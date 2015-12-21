@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ДвижокНовостейЗМ.Models.Identity;
 
 namespace ДвижокНовостейЗМ.Models
 {
@@ -31,6 +32,7 @@ namespace ДвижокНовостейЗМ.Models
         public DateTime PubDate { get; set; }
         public virtual ICollection<Reply> Replys { get; set; }        
         public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ApplicationUser Avtor { get; set; }
         public Message()
         {
             Replys = new List<Reply>();

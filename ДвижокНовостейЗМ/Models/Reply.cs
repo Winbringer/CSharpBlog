@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ДвижокНовостейЗМ.Models.Identity;
 
 namespace ДвижокНовостейЗМ.Models
 {
@@ -17,6 +18,7 @@ namespace ДвижокНовостейЗМ.Models
         public string Text { get; set; }
         [Display(Name ="Дата ответа")]
         public DateTime Date { get; set; }
-        public virtual Message Message { get; set; }       
+        public virtual Message Message { get; set; } 
+        public virtual ApplicationUser Avtor { get; set; }      
     }
 }

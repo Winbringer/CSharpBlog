@@ -8,6 +8,7 @@
            Текст ответа
         </th>
         <th>Дата</th>
+        <th>Автор</th>
         <th></th>
     </tr>
 
@@ -18,6 +19,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Avtor.UserName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit","Reply", new { id=item.Id },null) |           

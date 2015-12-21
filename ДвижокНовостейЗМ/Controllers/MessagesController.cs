@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Data;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using ДвижокНовостейЗМ.Models;
+using ДвижокНовостейЗМ.Models.Identity;
 
 namespace ДвижокНовостейЗМ.Controllers
 {
@@ -34,7 +37,7 @@ namespace ДвижокНовостейЗМ.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Details([Bind(Include = "Text")]Reply reply, int? id)
+        public async Task< ActionResult> Details([Bind(Include = "Text")]Reply reply, int? id)
         {
             var url = Request.UrlReferrer.AbsolutePath;
             reply.Date = DateTime.Now;
@@ -50,6 +53,8 @@ namespace ДвижокНовостейЗМ.Controllers
             if (ModelState.IsValid)
             {
                 reply.Message = message;
+                var UM = new ApplicationManager(new UserStore<ApplicationUser>(db));
+                if (User.Identity.IsAuthenticated) reply.Avtor = await UM.FindByNameAsync(User.Identity.Name);
                 db.Replys.Add(reply);
                 db.SaveChanges();
             }
@@ -69,12 +74,14 @@ namespace ДвижокНовостейЗМ.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public ActionResult Create([Bind(Include = "Id,Title,Text,PubDate")] Message message)
+        public async Task< ActionResult> Create([Bind(Include = "Id,Title,Text,PubDate")] Message message)
         {
             Session["Create"] = "Yes";
 
             if (ModelState.IsValid)
             {
+                var UM = new ApplicationManager(new UserStore<ApplicationUser>(db));
+              if(User.Identity.IsAuthenticated) message.Avtor =await UM.FindByNameAsync(User.Identity.Name);
                 db.Messages.Add(message);
                 db.SaveChanges();
                 return RedirectToAction("Index");
