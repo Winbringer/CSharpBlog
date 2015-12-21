@@ -68,6 +68,7 @@ namespace ДвижокНовостейЗМ.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "Id,Title,Text,PubDate")] Message message)
         {
             Session["Create"] = "Yes";
@@ -83,6 +84,7 @@ namespace ДвижокНовостейЗМ.Controllers
         }
 
         // GET: Messages/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +105,7 @@ namespace ДвижокНовостейЗМ.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "Id,Title,Text,PubDate")] Message message)
         {
             Session["Create"] = "No";
@@ -119,6 +122,7 @@ namespace ДвижокНовостейЗМ.Controllers
         }
 
         // GET: Messages/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -134,6 +138,7 @@ namespace ДвижокНовостейЗМ.Controllers
         }
 
         // POST: Messages/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

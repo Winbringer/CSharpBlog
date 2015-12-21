@@ -18,7 +18,7 @@
 
             @Html.ActionLink("Удалить свой аккаунт", "Delete", "Account")
 
-            @Html.ActionLink("Login", "Login","Account", new { returnUrl = Request.UrlReferrer.AbsoluteUri },null)
+            @Html.ActionLink("Login", "Login","Account", new { returnUrl = Request?.UrlReferrer?.AbsoluteUri },null)
 
             @Html.ActionLink("Зарегистрироваться", "Register", "Account")
         </p>

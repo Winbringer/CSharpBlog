@@ -18,8 +18,8 @@ namespace ДвижокНовостейЗМ.Controllers
                 {
                     var UM = new ApplicationManager(new UserStore<ApplicationUser>(db));
                     var user = await  UM.FindByNameAsync(User.Identity.Name);
-                    ViewBag.Age = user.Year;
-                    ViewBag.Sex = user.Sex;
+                    ViewBag.Age = user?.Year;
+                    ViewBag.Sex = user?.Sex;
                 }
             }
             return View();
