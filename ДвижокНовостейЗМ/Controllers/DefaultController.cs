@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using ДвижокНовостейЗМ.Models;
+using ДвижокНовостейЗМ.Models.Identity;
 using ДвижокНовостейЗМ.ViewModels;
 
 namespace ДвижокНовостейЗМ.Controllers
@@ -7,8 +10,18 @@ namespace ДвижокНовостейЗМ.Controllers
     public class DefaultController : Controller
     {
         // GET: Default
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                using (ApplicationDBContext db = new ApplicationDBContext())
+                {
+                    var UM = new ApplicationManager(new UserStore<ApplicationUser>(db));
+                    var user = await  UM.FindByNameAsync(User.Identity.Name);
+                    ViewBag.Age = user.Year;
+                    ViewBag.Sex = user.Sex;
+                }
+            }
             return View();
         }
         public ActionResult AboutTheAuthor()

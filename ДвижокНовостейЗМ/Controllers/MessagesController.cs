@@ -56,6 +56,7 @@ namespace ДвижокНовостейЗМ.Controllers
             return View(reply.Message);
         }
         // GET: Messages/Create
+        [Authorize(Roles ="admin")]
         public ActionResult Create()
         {
             Session["Create"] = "Yes";

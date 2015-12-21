@@ -6,6 +6,24 @@
 
 
 <h2>Домашняя</h2>
+<div style="border: 1px dashed solid red">
+    @if (User.Identity.IsAuthenticated)
+    {
+        @: Привет @User.Identity.Name
+        @: Возраст @ViewBag.Age
+        @: Пол @ViewBag.Sex
+    if (User.IsInRole("admin"))
+        {
+            <br />
+            <b>Вы админ!</b>
+
+        }
+    }
+    else
+    {
+        @: Привет Гость!
+    }
+</div>
 <p> Сегодняшняя дата @DateTime.Now.Day<i>.</i>@DateTime.Now.Month<i>.</i>@DateTime.Now.Year</p>
 @Helper11.Human(new Human("Витя", 10, "Москва"))
 @Helper11.Human(new Human("Игорь", 15, "Санкт-Питербург"))
@@ -16,18 +34,3 @@
 
 <h3>Тестим Лямбду</h3>
 Результат: @calc.Oper(2, 3, (x, y) => x + y)
-<div style="border:dashed 1px solid blue">
-    @if (User.Identity.IsAuthenticated)
-    {
-        @: Привет @User.Identity.Name
-    if (User.IsInRole("admin"))
-        {
-            <br />
-            <b>Вы админ!</b>
-        }
-    }
-    else
-    {
-        @: Привет Гость!
-    }
-</div>
