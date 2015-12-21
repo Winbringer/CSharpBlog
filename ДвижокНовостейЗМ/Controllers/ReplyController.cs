@@ -21,7 +21,9 @@ namespace ДвижокНовостейЗМ.Controllers
             {
                 return HttpNotFound();
             }
-            return View(reply);            
+            if(User.Identity.IsAuthenticated && (User.IsInRole("admin") || reply?.Avtor?.UserName == User.Identity.Name ))
+            return View(reply);
+            return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
 
         [HttpPost]
