@@ -55,7 +55,7 @@ namespace ДвижокНовостейЗМ.DAL
             roleManager.Create(role2);
 
             // создаем пользователей
-            var admin = new ApplicationUser { Email = "somemail@mail.ru", UserName = "Admin" };
+            var admin = new ApplicationUser { Email = "somemail@mail.ru", UserName = "Admin", FIO="Admin", Sex=Sex.Мужской, Year=20 };
             string password = "123456";
             var result = userManager.Create(admin, password);
 

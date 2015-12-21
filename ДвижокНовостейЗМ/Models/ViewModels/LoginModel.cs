@@ -10,8 +10,10 @@ namespace ДвижокНовостейЗМ.Models.ViewModels
    public class LoginModel
     {
         [Required]
+        [Display(Name ="Имя")]
         public string Email { get; set; }
         [Required]
+        [Display(Name ="Пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

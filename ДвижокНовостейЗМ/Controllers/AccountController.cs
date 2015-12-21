@@ -22,7 +22,7 @@ namespace ДвижокНовостейЗМ.Controllers
         }
         public ActionResult Index()
         {
-          
+
             return View(UserManager.Users);
         }
 
@@ -36,7 +36,14 @@ namespace ДвижокНовостейЗМ.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email, Year = model.Year };
+                ApplicationUser user = new ApplicationUser
+                {
+                    FIO = model.UserName,
+                    Email = model.Email,
+                    Year = model.Year,
+                    Sex = model.Sex,
+                    UserName = model.UserName                    
+                };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
