@@ -13,7 +13,7 @@ namespace ДвижокНовостейЗМ.DAL
         {
             Tag tag1 = new Tag { Name = "Тег у которого много сообщений" };
 
-            for (int i = 0; i < 10; ++i)
+            for (int i = 0; i < 100; ++i)
             {
 
                 Message message = new Message
