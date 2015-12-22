@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Ajax</h2>
+
+<br />
+@Ajax.ActionLink("Получить часть слова: Переход", "_PartWord", "Ajax", new { word = "Переход", start = 4, end = 7 }, new AjaxOptions { UpdateTargetId = "divMy", LoadingElementId="loader" })
+<br />
+
+<img src="~/Images/ajax-loader.gif" id="loader" style="display:none" />
+<div id="divMy" style="background-color:aqua; border: 1px solid blue">
+    Здесь будет результат
+</div>
+@using(Ajax.BeginForm("_PartWord","Ajax",new AjaxOptions() { UpdateTargetId = "divMy", LoadingElementId = "loader", InsertionMode=InsertionMode.InsertAfter }))
+{
+    @Html.Label("world","Слово: ")<br />
+ @Html.TextBox("word")<br />
+    @Html.Label("start", "Индекс начала: ")<br />
+ @Html.TextBox("start")<br />
+    @Html.Label("end", "Индекс конца: ")<br />
+ @Html.TextBox("end")<br />
+<input type="submit" value="Отправить" />
+
+}
