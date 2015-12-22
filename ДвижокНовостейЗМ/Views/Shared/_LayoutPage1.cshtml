@@ -6,6 +6,7 @@
     <script src="~/Scripts/jquery-2.1.4.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </head>
 <body>
     <header>        
@@ -29,6 +30,7 @@
         @Html.ActionLink("Калькулятор", "Calculator", "Default")
         @Html.ActionLink("Пробуем FormCollection ", "TestFC", "Default")
         @Html.ActionLink("Админка для Сообщений", "Index", "Messages")
+        @Html.ActionLink("Ajax", "Index", "Ajax")
     </header>
     <div style="float:right; border: 2px solid red; background-color:blue">
         @RenderSection("rPanel", false)
