@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using ДвижокНовостейЗМ.Models;
 using ДвижокНовостейЗМ.Models.Identity;
+using PagedList.Mvc;
+using PagedList;
 
 namespace ДвижокНовостейЗМ.Controllers
 {
@@ -15,9 +17,11 @@ namespace ДвижокНовостейЗМ.Controllers
         private ApplicationDBContext db = new ApplicationDBContext();
 
         // GET: Messages
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Messages.Include("Replys").OrderBy(m => m.Title).ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(db.Messages.Include("Replys").OrderBy(m => m.Title).ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Messages/Details/5

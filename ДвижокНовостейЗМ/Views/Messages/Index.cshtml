@@ -1,5 +1,6 @@
-﻿@model IEnumerable<ДвижокНовостейЗМ.Models.Message>
-
+﻿@model PagedList.IPagedList<ДвижокНовостейЗМ.Models.Message>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
 }
@@ -14,10 +15,10 @@
 <table class="table" border="1">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model[0].Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayNameFor(model => model[0].Text)
         </th>
         <th>
             Tegs
@@ -29,7 +30,7 @@
             Последние 30 символов
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PubDate)
+            @Html.DisplayNameFor(model => model[0].PubDate)
         </th>
         <th>
            Автор
@@ -86,3 +87,7 @@
                 }
 
 </table>
+<br />
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
