@@ -9,6 +9,7 @@ using ДвижокНовостейЗМ.Models;
 using ДвижокНовостейЗМ.Models.Identity;
 using PagedList.Mvc;
 using PagedList;
+using System.Collections.Generic;
 
 namespace ДвижокНовостейЗМ.Controllers
 {
@@ -19,7 +20,7 @@ namespace ДвижокНовостейЗМ.Controllers
         // GET: Messages
         public ActionResult Index(int? page)
         {
-            int pageSize = 10;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(db.Messages.Include("Replys").OrderBy(m => m.Title).ToPagedList(pageNumber,pageSize));
         }
@@ -169,6 +170,12 @@ namespace ДвижокНовостейЗМ.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public PartialViewResult _Index(int mId)
+        {
+           Message message = db.Messages.Find(mId);
+            List<Reply> reply = message.Replys.ToList();
+            return PartialView("_Index", reply);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -6,11 +6,13 @@
 }
 
 <h2>Index</h2>
+
+
 @if (User.IsInRole("admin"))
 {
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 }
 <table class="table" border="1">
     <tr>
@@ -21,7 +23,7 @@
             @Html.DisplayNameFor(model => model[0].Text)
         </th>
         <th>
-            Tegs
+            Теги
         </th>
         <th>
             Ответов
@@ -33,9 +35,9 @@
             @Html.DisplayNameFor(model => model[0].PubDate)
         </th>
         <th>
-           Автор
+            Автор
         </th>
-        <th></th>
+        <th>Управление</th>
     </tr>
 
     @foreach (var item in Model)
@@ -75,6 +77,10 @@
                 @Html.DisplayFor(modelItem => item.Avtor.UserName)
             </td>
             <td>
+                @if (item.Replys.Count > 0)
+                {
+                    @Ajax.ActionLink("Показать ответы", "_Index", new { mId = item.Id }, new AjaxOptions() { UpdateTargetId = "ReplyDiv" }) @: |
+                 }
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @if (User.IsInRole("admin"))
                 {
@@ -84,9 +90,10 @@
                 }
             </td>
         </tr>
-                }
+                    }
 
 </table>
+<div id="ReplyDiv"></div>
 <br />
 Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
 
