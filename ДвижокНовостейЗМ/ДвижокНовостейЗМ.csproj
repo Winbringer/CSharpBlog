@@ -158,20 +158,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\PagedList.css" />
+    <Content Include="App_FrontEnd\Content\PagedList.css" />
     <Content Include="Global.asax" />
-    <Content Include="Images\ajax-loader.gif" />
-    <Content Include="Images\ArcheAge_sample.jpg" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="App_FrontEnd\Images\ajax-loader.gif" />
+    <Content Include="App_FrontEnd\Images\ArcheAge_sample.jpg" />
+    <None Include="App_FrontEnd\Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="App_FrontEnd\Scripts\jquery-2.1.4.js" />
+    <Content Include="App_FrontEnd\Scripts\jquery-2.1.4.min.js" />
+    <None Include="App_FrontEnd\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="App_FrontEnd\Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="App_FrontEnd\Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="App_FrontEnd\Scripts\jquery.validate.js" />
+    <Content Include="App_FrontEnd\Scripts\jquery.validate.min.js" />
+    <Content Include="App_FrontEnd\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="App_FrontEnd\Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -237,7 +237,7 @@
     <Content Include="Views\Messages\_Index.cshtml" />
     <Content Include="Views\Reply\Edit.cshtml" />
     <Content Include="Views\Reply\Delete.cshtml" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="App_FrontEnd\Scripts\jquery-2.1.4.min.map" />
     <Content Include="Views\Messages\_ReplyCreate.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -258,7 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="UploadFiles\" />
+    <Folder Include="App_FrontEnd\UploadFiles\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201512261201326_InitialCreate.resx">
