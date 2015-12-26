@@ -6,6 +6,12 @@
 
 
 <h2>Домашняя</h2>
+<div>
+    @if (System.Web.HttpContext.Current.Application["OnlaynUsers"] != null)
+    {
+        @: Количество пользователей на сайте @System.Web.HttpContext.Current.Application["OnlaynUsers"]
+    }
+</div>
 <div style="border: 1px dashed solid red">
     @if (User.Identity.IsAuthenticated)
     {
