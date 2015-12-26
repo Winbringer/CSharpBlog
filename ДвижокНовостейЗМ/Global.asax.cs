@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
+using ДвижокНовостейЗМ.App_Start;
 using ДвижокНовостейЗМ.DAL;
 
 namespace ДвижокНовостейЗМ
@@ -10,8 +12,8 @@ namespace ДвижокНовостейЗМ
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            Database.SetInitializer(new DBInitalazer());
+            RouteConfig.RegisterRoutes(RouteTable.Routes);           
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

@@ -32,7 +32,8 @@ namespace ДвижокНовостейЗМ.Models
         public DateTime PubDate { get; set; }
         public virtual ICollection<Reply> Replys { get; set; }        
         public virtual ICollection<Tag> Tags { get; set; }
-        public virtual ApplicationUser Avtor { get; set; }
+        public virtual ApplicationUser Avtor { get; set; }       
+        public virtual File File { get; set; }
         public Message()
         {
             Replys = new List<Reply>();

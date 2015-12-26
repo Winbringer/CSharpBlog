@@ -10,6 +10,8 @@ using ДвижокНовостейЗМ.Models.Identity;
 using PagedList.Mvc;
 using PagedList;
 using System.Collections.Generic;
+using System.Web;
+
 
 namespace ДвижокНовостейЗМ.Controllers
 {
@@ -79,14 +81,23 @@ namespace ДвижокНовостейЗМ.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public async Task< ActionResult> Create([Bind(Include = "Id,Title,Text,PubDate")] Message message)
+        public async Task< ActionResult> Create([Bind(Include = "Id,Title,Text,PubDate")] Message message, HttpPostedFileBase Image )
         {
             Session["Create"] = "Yes";
 
             if (ModelState.IsValid)
             {
+                if (Image != null)
+                {
+                    File file = new File();
+                    file.Ex = System.IO.Path.GetExtension(Image.FileName);
+                    db.Files.Add(file);
+                    message.File = file;
+                    db.SaveChanges();
+                    Image.SaveAs(Server.MapPath("~/UploadFiles/" + file.FileName));
+                }
                 var UM = new ApplicationManager(new UserStore<ApplicationUser>(db));
-              if(User.Identity.IsAuthenticated) message.Avtor =await UM.FindByNameAsync(User.Identity.Name);
+              if(User.Identity.IsAuthenticated) message.Avtor =await UM.FindByNameAsync(User.Identity.Name);                
                 db.Messages.Add(message);
                 db.SaveChanges();
                 return RedirectToAction("Index");

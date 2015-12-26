@@ -32,11 +32,15 @@
 
         <dd>
             @Html.DisplayFor(model => model.PubDate)
-        </dd>
+        </dd>      
     </dl>
+    @if (Model.File != null)
+    {
+        <img src="~/UploadFiles/@Model.File.FileName" />
+    }
 </div>
 <p>
-   @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
 @Html.Partial("_ReplyCreate", new Reply())

@@ -2,11 +2,10 @@
 <html lang="ru">
 <head>
     <meta name="viewport" content="width=device-width" charset="utf-8" />
-    <title>@ViewBag.Title</title>
-    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <title>@ViewBag.Title</title>  
+    @using System.Web.Optimization    
+    @Styles.Render("~/bundles/mystyles")
+    @Scripts.Render("~/bundles/myscripts")
 </head>
 <body>
     <header>        

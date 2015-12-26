@@ -19,5 +19,6 @@ namespace ДвижокНовостейЗМ.Models
         public DbSet<Message> Messages { get; set; }
         public DbSet<Reply> Replys { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<File> Files { get; set; }
     }
 }

@@ -40,7 +40,8 @@ namespace ДвижокНовостейЗМ.DAL
                     Title = "Сообщение номер " + i,
                     Text = "Ехохо и бутылка рома номер " + i,
                     PubDate=DateTime.Now,
-                    Avtor = admin
+                    Avtor = admin,
+                    File = null
                 };
                 Tag tag = new Tag
                 {
