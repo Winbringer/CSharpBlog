@@ -20,5 +20,6 @@ namespace ДвижокНовостейЗМ.Models
         public DbSet<Reply> Replys { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<File> Files { get; set; }
+        public DbSet<VisitsTable> Visits { get; set; }
     }
 }

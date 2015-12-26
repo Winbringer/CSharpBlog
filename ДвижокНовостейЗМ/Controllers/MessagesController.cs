@@ -24,7 +24,7 @@ namespace ДвижокНовостейЗМ.Controllers
         {
             int pageSize = 5;
             int pageNumber = (page ?? 1);
-            return View(db.Messages.Include("Replys").OrderBy(m => m.Title).ToPagedList(pageNumber,pageSize));
+            return View(db.Messages.Include("Replys").OrderBy(m => m.Title).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Messages/Details/5
@@ -44,7 +44,7 @@ namespace ДвижокНовостейЗМ.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task< ActionResult> Details([Bind(Include = "Text")]Reply reply, int? id)
+        public async Task<ActionResult> Details([Bind(Include = "Text")]Reply reply, int? id)
         {
             var url = Request.UrlReferrer.AbsolutePath;
             reply.Date = DateTime.Now;
@@ -68,7 +68,7 @@ namespace ДвижокНовостейЗМ.Controllers
             return View(reply.Message);
         }
         // GET: Messages/Create
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             Session["Create"] = "Yes";
@@ -81,25 +81,31 @@ namespace ДвижокНовостейЗМ.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public async Task< ActionResult> Create([Bind(Include = "Id,Title,Text,PubDate")] Message message, HttpPostedFileBase Image )
+        public async Task<ActionResult> Create([Bind(Include = "Id,Title,Text,PubDate")] Message message, HttpPostedFileBase Image)
         {
             Session["Create"] = "Yes";
 
             if (ModelState.IsValid)
             {
-                if (Image != null)
+                using (var transaction = new System.Transactions.TransactionScope())
                 {
-                    File file = new File();
-                    file.Ex = System.IO.Path.GetExtension(Image.FileName);
-                    db.Files.Add(file);
-                    message.File = file;
-                    db.SaveChanges();
-                    Image.SaveAs(Server.MapPath("~/UploadFiles/" + file.FileName));
+                    if (Image != null)
+                    {
+
+                        File file = new File();
+                        file.Ex = System.IO.Path.GetExtension(Image.FileName);
+                        db.Files.Add(file);
+                        message.File = file;
+                        db.SaveChanges();
+                        Image.SaveAs(Server.MapPath("~/App_FrontEnd/UploadFiles/" + file.FileName));
+                    }
+                    transaction.Complete();
                 }
                 var UM = new ApplicationManager(new UserStore<ApplicationUser>(db));
-              if(User.Identity.IsAuthenticated) message.Avtor =await UM.FindByNameAsync(User.Identity.Name);                
-                db.Messages.Add(message);
-                db.SaveChanges();
+                    if (User.Identity.IsAuthenticated) message.Avtor = await UM.FindByNameAsync(User.Identity.Name);
+                    db.Messages.Add(message);
+                    db.SaveChanges();                 
+              
                 return RedirectToAction("Index");
             }
 
@@ -183,7 +189,7 @@ namespace ДвижокНовостейЗМ.Controllers
 
         public PartialViewResult _Index(int mId)
         {
-           Message message = db.Messages.Find(mId);
+            Message message = db.Messages.Find(mId);
             List<Reply> reply = message.Replys.ToList();
             return PartialView("_Index", reply);
         }

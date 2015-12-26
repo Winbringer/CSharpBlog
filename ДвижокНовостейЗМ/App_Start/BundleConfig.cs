@@ -11,11 +11,11 @@ namespace ДвижокНовостейЗМ.App_Start
             {
 
                 bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
-                            "~/Scripts/jquery-{version}.js",
-                            "~/Scripts/jquery.validate*",
-                            "~/Scripts/jquery.unobtrusive-ajax.js"));
+                            "~/App_FrontEnd/Scripts/jquery-{version}.js",
+                            "~/App_FrontEnd/Scripts/jquery.validate*",
+                            "~/App_FrontEnd/Scripts/jquery.unobtrusive-ajax.js"));
             bundles.Add(new StyleBundle("~/bundles/mystyles").Include(
-                "~/Content/PagedList.css"));
+                "~/App_FrontEnd/Content/PagedList.css"));
             //bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
             //            "~/Scripts/jquery-{version}.js"));
 
