@@ -7,7 +7,7 @@ using ДвижокНовостейЗМ.Models.Identity;
 
 namespace ДвижокНовостейЗМ.DAL
 {
-    class DBInitalazer : System.Data.Entity.DropCreateDatabaseAlways<ApplicationDBContext>
+    class DBInitalazer : System.Data.Entity.CreateDatabaseIfNotExists<ApplicationDBContext>
     {
         protected override void Seed(ApplicationDBContext context)
         {

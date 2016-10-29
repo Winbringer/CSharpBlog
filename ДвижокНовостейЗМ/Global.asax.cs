@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ДвижокНовостейЗМ.App_Start;
+using ДвижокНовостейЗМ.DAL;
 using ДвижокНовостейЗМ.Models;
 
 namespace ДвижокНовостейЗМ
@@ -16,10 +18,12 @@ namespace ДвижокНовостейЗМ
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             System.Web.HttpContext.Current.Application["OnlaynUsers"] = 0;
+            Database.SetInitializer(new DBInitalazer());
             using (var db = new ApplicationDBContext())
             {
-                db.Database.CreateIfNotExists();
+                db.Database.Initialize(true);
             }
+
         }
         protected void Session_Start(object sender, EventArgs e)
         {
