@@ -27,11 +27,14 @@ namespace ДвижокНовостейЗМ.Controllers
             return View(RoleManager.Roles);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult> Create(CreateRoleModel model)
         {
             if (ModelState.IsValid)
